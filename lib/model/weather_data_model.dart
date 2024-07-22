@@ -55,32 +55,32 @@ class WeatherDataModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.coord != null) {
-      data['coord'] = this.coord!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (coord != null) {
+      data['coord'] = coord!.toJson();
     }
-    if (this.weather != null) {
-      data['weather'] = this.weather!.map((v) => v.toJson()).toList();
+    if (weather != null) {
+      data['weather'] = weather!.map((v) => v.toJson()).toList();
     }
-    data['base'] = this.base;
-    if (this.main != null) {
-      data['main'] = this.main!.toJson();
+    data['base'] = base;
+    if (main != null) {
+      data['main'] = main!.toJson();
     }
-    data['visibility'] = this.visibility;
-    if (this.wind != null) {
-      data['wind'] = this.wind!.toJson();
+    data['visibility'] = visibility;
+    if (wind != null) {
+      data['wind'] = wind!.toJson();
     }
-    if (this.clouds != null) {
-      data['clouds'] = this.clouds!.toJson();
+    if (clouds != null) {
+      data['clouds'] = clouds!.toJson();
     }
-    data['dt'] = this.dt;
-    if (this.sys != null) {
-      data['sys'] = this.sys!.toJson();
+    data['dt'] = dt;
+    if (sys != null) {
+      data['sys'] = sys!.toJson();
     }
-    data['timezone'] = this.timezone;
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['cod'] = this.cod;
+    data['timezone'] = timezone;
+    data['id'] = id;
+    data['name'] = name;
+    data['cod'] = cod;
     return data;
   }
 }
@@ -101,9 +101,9 @@ class CoordModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['lon'] = this.lon;
-    data['lat'] = this.lat;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['lon'] = lon;
+    data['lat'] = lat;
     return data;
   }
 }
@@ -124,11 +124,11 @@ class WeatherModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['main'] = this.main;
-    data['description'] = this.description;
-    data['icon'] = this.icon;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['main'] = main;
+    data['description'] = description;
+    data['icon'] = icon;
     return data;
   }
 }
@@ -138,10 +138,10 @@ class WeatherMainModel {
   double? feelsLike;
   double? tempMin;
   double? tempMax;
-  int? pressure;
-  int? humidity;
-  int? seaLevel;
-  int? grndLevel;
+  double? pressure;
+  double? humidity;
+  double? seaLevel;
+  double? grndLevel;
 
   WeatherMainModel(
       {this.temp,
@@ -154,48 +154,48 @@ class WeatherMainModel {
       this.grndLevel});
 
   WeatherMainModel.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'];
-    feelsLike = json['feels_like'];
-    tempMin = json['temp_min'];
-    tempMax = json['temp_max'];
-    pressure = json['pressure'];
-    humidity = json['humidity'];
-    seaLevel = json['sea_level'];
-    grndLevel = json['grnd_level'];
+    temp = double.tryParse(json['temp'].toString());
+    feelsLike = double.tryParse(json['feels_like'].toString());
+    tempMin = double.tryParse(json['temp_min'].toString());
+    tempMax = double.tryParse(json['temp_max'].toString());
+    pressure = double.tryParse(json['pressure'].toString());
+    humidity = double.tryParse(json['humidity'].toString());
+    seaLevel = double.tryParse(json['sea_level'].toString());
+    grndLevel = double.tryParse(json['grnd_level'].toString());
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['temp'] = this.temp;
-    data['feels_like'] = this.feelsLike;
-    data['temp_min'] = this.tempMin;
-    data['temp_max'] = this.tempMax;
-    data['pressure'] = this.pressure;
-    data['humidity'] = this.humidity;
-    data['sea_level'] = this.seaLevel;
-    data['grnd_level'] = this.grndLevel;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['temp'] = temp;
+    data['feels_like'] = feelsLike;
+    data['temp_min'] = tempMin;
+    data['temp_max'] = tempMax;
+    data['pressure'] = pressure;
+    data['humidity'] = humidity;
+    data['sea_level'] = seaLevel;
+    data['grnd_level'] = grndLevel;
     return data;
   }
 }
 
 class WindModel {
   double? speed;
-  int? deg;
+  double? deg;
   double? gust;
 
   WindModel({this.speed, this.deg, this.gust});
 
   WindModel.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'];
-    deg = json['deg'];
-    gust = json['gust'];
+    speed = double.tryParse(json['speed'].toString());
+    deg = double.tryParse(json['deg'].toString());
+    gust = double.tryParse(json['gust'].toString());
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['speed'] = this.speed;
-    data['deg'] = this.deg;
-    data['gust'] = this.gust;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['speed'] = speed;
+    data['deg'] = deg;
+    data['gust'] = gust;
     return data;
   }
 }
@@ -206,12 +206,12 @@ class CloudsModel {
   CloudsModel({this.all});
 
   CloudsModel.fromJson(Map<String, dynamic> json) {
-    all = json['all'];
+    all = int.tryParse(json['all'].toString());
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['all'] = this.all;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['all'] = all;
     return data;
   }
 }
@@ -234,12 +234,12 @@ class SysModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['id'] = this.id;
-    data['country'] = this.country;
-    data['sunrise'] = this.sunrise;
-    data['sunset'] = this.sunset;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['id'] = id;
+    data['country'] = country;
+    data['sunrise'] = sunrise;
+    data['sunset'] = sunset;
     return data;
   }
 }

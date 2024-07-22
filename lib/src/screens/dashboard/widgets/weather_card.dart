@@ -41,6 +41,7 @@ class WeatherCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
+                flex: 2,
                 child: Text(
                   '${((data.main?.temp ?? 0) - 273.15).toStringAsFixed(2)}$celsiusSymbol',
                   style: context.tl.copyWith(
@@ -49,11 +50,13 @@ class WeatherCard extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
               ),
-              SizedBox(
-                height: 60.h,
-                width: 60.w,
-                child: Image.network(
-                  '${Paths.imageBaseUrl}${Paths.weatherImagePrePath}${data.weather?.firstOrNull?.icon ?? ''}${Paths.imageFormat}',
+              Expanded(
+                child: SizedBox(
+                  height: 60.h,
+                  width: 60.w,
+                  child: Image.network(
+                    '${Paths.imageBaseUrl}${Paths.weatherImagePrePath}${data.weather?.firstOrNull?.icon ?? ''}${Paths.imageFormat}',
+                  ),
                 ),
               )
             ],
